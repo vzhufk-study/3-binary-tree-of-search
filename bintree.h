@@ -25,9 +25,11 @@ public:
     }
 
     treeElement(treeElement *value){
-        this->right = value->right;
-        this->left = value->left;
-        this->value = value->value;
+        if (value != 0){
+            this->right = value->right;
+            this->left = value->left;
+            this->value = value->value;
+        }
     }
 
     ~treeElement(){
@@ -37,6 +39,10 @@ public:
         }
         //delete
         //at least try to
+    }
+
+    valueType* getValuePointer(){
+        return &value;
     }
 
     valueType getValue(){

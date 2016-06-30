@@ -20,12 +20,17 @@ public:
     std::string getValue(){
         return value;
     }
+
+    void setAmount(unsigned amount){
+        this->amount = amount;
+    }
+
     unsigned getAmount(){
         return amount;
     }
 
     bool operator>(ADWord B){
-        return amount > B.amount;
+        return value.compare(B.value) > 0;
     }
 
     bool operator==(ADWord B){
