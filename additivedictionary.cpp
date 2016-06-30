@@ -23,7 +23,12 @@ bool AdditiveDictionary::equal(std::string A, std::string B){
 
 bool  AdditiveDictionary::addValue(std::string value, unsigned amount){
    ADWord V(value, amount);
-   BinTree::addValue(V);
+   treeElement<ADWord> *in = BinTree::findValue(*(new ADWord(value, amount)));
+   if (in){
+       in->getValuePointer()->setAmount(in->getValue().getAmount() + amount);
+   }else{
+        BinTree::addValue(V);
+   }
    return true;
 }
 
@@ -33,9 +38,7 @@ bool  AdditiveDictionary::addValueFromFile(std::string file_name){
 
     std::string word;
     while (file>>word) {
-        unsigned amount;
-        file>>amount;
-        addValue(word, amount);
+        addValue(word, 1);
     }
     return true;
 }
